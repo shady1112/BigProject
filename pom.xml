@@ -7,7 +7,6 @@
   <modules>
     <module>Store-Member</module>
     <module>Store-Book</module>
-    <module>Store-Manager</module>
     <module>Store-Managers</module>
   </modules>
 
