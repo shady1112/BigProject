@@ -3,7 +3,17 @@ server:
 spring:
   application:
     name: Member
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://106.12.182.12:3306/Book?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+
 eureka:
   client:
     service-url:
       defaultZone: http://106.12.182.12:7000/eureka
+mybatis:
+  mapperLocations: classpath:mybatis/*.xml
+
+TokenSalt : "a1b2c3ddd"
