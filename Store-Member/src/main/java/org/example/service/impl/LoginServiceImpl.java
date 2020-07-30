@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
             if (userCount == 1) {
                 Map<String, String> resultMap = new HashMap(4);
                 resultMap.put("token", TokenUtil.GenneratorToken(user));
-                resultMap.put("msg", "登陆成功！");
+                resultMap.put("msg", "欢迎您！");
                 resultMap.put("lastlogin",lastLogin);
                 usersDao.updateLastLogin(new Date(),user.getAccount());
                 return ResultUtil.success(resultMap);
@@ -42,10 +42,30 @@ public class LoginServiceImpl implements LoginService {
                 return ResultUtil.error(ResultEnum.LOGINERROR);
             }
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(e.getMessage());
             return ResultUtil.error(ResultEnum.UNKONW_ERROR);
         }finally {
             log.info("登陆失败！");
+        }
+    }
+
+    @Override
+    public Result registry(Users user) {
+        Integer userCount = usersDao.queryUserCount(user);
+        if (userCount>0){
+            return ResultUtil.error("该账号已经被注册了！");
+        }
+        try{
+            user.setReg_time(new Date());
+            usersDao.registryUser(user);
+            Map<String, String> resultMap = new HashMap(4);
+            resultMap.put("msg", "注册成功！即将跳转登陆界面...");
+            return ResultUtil.success(resultMap);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return ResultUtil.error(ResultEnum.UNKONW_ERROR);
+        }finally {
+            log.info("注册失败！");
         }
     }
 }

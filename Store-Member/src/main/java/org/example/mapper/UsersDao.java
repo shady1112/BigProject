@@ -38,4 +38,8 @@ public interface UsersDao {
     String queryLastLogin(String id);
 
     void updateLastLogin(@Param("date") Date date,@Param("userAccount") String userAccount);
+
+    void registryUser(@Param("user") Users user);
+
+    Integer queryUserCount(@Param("user")Users user);
 }

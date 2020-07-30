@@ -11,4 +11,6 @@ public interface LoginService {
      * @return 数量信息
      */
     Result selectUserCount(Users user);
+
+    Result registry(Users user);
 }
