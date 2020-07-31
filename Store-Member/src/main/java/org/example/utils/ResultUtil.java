@@ -1,6 +1,8 @@
-package org.example.common;
+package org.example.utils;
 
 
+import org.example.common.result.Result;
+import org.example.common.result.ResultEnum;
 
 /**
  * 返回结果工具类<br/>

@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.result;
 
 /**
  * 返回结果枚举<br/>

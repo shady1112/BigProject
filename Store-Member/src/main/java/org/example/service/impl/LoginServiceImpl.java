@@ -2,15 +2,15 @@ package org.example.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.bean.Users;
-import org.example.common.Result;
-import org.example.common.ResultEnum;
-import org.example.common.ResultUtil;
-import org.example.common.TokenUtil;
+import org.example.common.result.Result;
+import org.example.common.result.ResultEnum;
+import org.example.utils.ResultUtil;
+import org.example.utils.TokenUtil;
 import org.example.mapper.UsersDao;
 import org.example.service.LoginService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,6 +25,8 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private UsersDao usersDao;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @Override
     public Result selectUserCount(Users user) {
@@ -50,7 +52,11 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Result registry(Users user) {
+    public Result registry(Users user, String code) {
+        String randomCode = (String) redisTemplate.opsForValue().get("randomCode");
+        if (!code.equals(randomCode)){
+            return ResultUtil.error("验证码错误！");
+        }
         Integer userCount = usersDao.queryUserCount(user);
         if (userCount>0){
             return ResultUtil.error("该账号已经被注册了！");

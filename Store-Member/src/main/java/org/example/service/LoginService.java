@@ -1,7 +1,7 @@
 package org.example.service;
 
 import org.example.bean.Users;
-import org.example.common.Result;
+import org.example.common.result.Result;
 
 public interface LoginService {
 
@@ -12,5 +12,5 @@ public interface LoginService {
      */
     Result selectUserCount(Users user);
 
-    Result registry(Users user);
+    Result registry(Users user, String code);
 }

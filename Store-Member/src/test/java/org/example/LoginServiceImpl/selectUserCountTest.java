@@ -1,12 +1,11 @@
 package org.example.LoginServiceImpl;
 
 
-import mockit.Expectations;
 import mockit.Mock;
 import mockit.MockUp;
 import org.example.Test.BaseTest;
 import org.example.bean.Users;
-import org.example.common.Result;
+import org.example.common.result.Result;
 import org.example.mapper.UsersDao;
 import org.example.service.LoginService;
 import org.junit.Assert;

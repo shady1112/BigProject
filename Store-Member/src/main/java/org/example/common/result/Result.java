@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.result;
 
 import java.io.Serializable;
 
