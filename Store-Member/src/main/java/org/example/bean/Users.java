@@ -22,6 +22,16 @@ public class Users implements Serializable {
 
     private Date reg_time;
 
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     private static final long serialVersionUID = 1L;
 
 

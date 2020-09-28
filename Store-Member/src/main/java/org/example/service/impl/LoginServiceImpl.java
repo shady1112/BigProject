@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import com.alibaba.nacos.client.logger.support.LogLog;
 import lombok.extern.slf4j.Slf4j;
 import org.example.bean.Users;
 import org.example.common.result.Result;
@@ -9,7 +10,7 @@ import org.example.utils.TokenUtil;
 import org.example.mapper.UsersDao;
 import org.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class LoginServiceImpl implements LoginService {
     private UsersDao usersDao;
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    private  ApplicationContext applicationContext;
 
     @Override
     public Result selectUserCount(Users user) {
@@ -74,4 +77,41 @@ public class LoginServiceImpl implements LoginService {
             log.info("注册失败！");
         }
     }
+
+    @Override
+    public Result checkAccount(Users user) throws Exception {
+        Integer userCount = usersDao.queryUserCount(user);
+        if (userCount==0){
+            System.out.println();
+            throw new Exception("该用户不存在！");
+        }else {
+            return ResultUtil.success();
+        }
+    }
+
+    @Override
+    public Result checkEmail(Users user) {
+        Integer userCount = usersDao.queryEmailCount(user);
+        if (userCount==0){
+            throw new RuntimeException("该邮箱不存在！");
+        }else {
+            return ResultUtil.success();
+        }
+    }
+
+    @Override
+    public Result resetPwd(Users user) {
+        try {
+            usersDao.resetPwd(user);
+            Map resultMap = new HashMap();
+            resultMap.put("msg", "密码已成功修改！");
+            return ResultUtil.success(resultMap);
+        }catch (Exception e){
+            log.error("密码修改失败",e);
+            return ResultUtil.error("密码修改失败");
+
+        }
+    }
+
+
 }

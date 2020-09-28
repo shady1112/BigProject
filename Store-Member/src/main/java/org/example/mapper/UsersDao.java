@@ -42,4 +42,8 @@ public interface UsersDao {
     void registryUser(@Param("user") Users user);
 
     Integer queryUserCount(@Param("user")Users user);
+
+    Integer queryEmailCount(@Param("user")Users user);
+
+    void resetPwd(@Param("user")Users user);
 }

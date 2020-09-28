@@ -179,11 +179,22 @@
   <update id="updateLastLogin" parameterType="org.example.bean.Users">
     update Users set last_login = #{date}  where account = #{userAccount}
   </update>
+  <update id="resetPwd">
+    update Users set
+    <if test="user.password!=null and user.password != '' ">
+      password = #{user.password}
+    </if>
+    where account = #{user.account}
+  </update>
   <insert id="registryUser">
-    insert into Users(account,password,reg_time)
-    values (#{user.account},#{user.password},#{user.reg_time})
+    insert into Users(account,password,reg_time,email)
+    values (#{user.account},#{user.password},#{user.reg_time},#{user.email})
   </insert>
   <select id="queryUserCount" resultType="java.lang.Integer">
     select count(id) from Users where account = #{user.account}
   </select>
+  <select id="queryEmailCount" resultType="java.lang.Integer">
+        select count(id) from Users where email = #{user.email}
+  </select>
+
 </mapper>
