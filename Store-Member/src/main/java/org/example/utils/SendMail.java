@@ -67,7 +67,7 @@ public class SendMail {
             // MimeBodyPart代表一块一块的资源内容
             MimeBodyPart image = new MimeBodyPart();
             // 图片需要经过数处理，DataHandler，不然会乱码
-            DataHandler dh = new DataHandler(new FileDataSource("Store-Member/src/main/resources/img/159602672991491.png"));
+            DataHandler dh = new DataHandler(new FileDataSource("/usr/local/project/159602672991491.png"));
             // 在我们的Body中放入这个图片处理数据
             image.setDataHandler(dh);
             // 给图片设置一个ID，我们后面可以使用,就是下面的src里面可以直接用

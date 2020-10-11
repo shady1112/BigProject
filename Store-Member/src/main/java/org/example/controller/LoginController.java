@@ -57,7 +57,7 @@ public class LoginController {
      *
      * @param user 用户信息
      */
-    @PostMapping("userRegistry")
+    @RequestMapping("userRegistry")
     public Result userRegistry(Users user,String code) {
         if(user==null){
             return ResultUtil.error("用户信息为空！");
@@ -78,7 +78,7 @@ public class LoginController {
      * @return
      * @throws Exception
      */
-    @PostMapping("sendMail")
+    @RequestMapping("sendMail")
     public Result sendMail (String userMail ) throws Exception {
          String randomCode = RandomStringUtils.random(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
@@ -96,7 +96,7 @@ public class LoginController {
      * @param code
      * @return
      */
-    @PostMapping("resetPwd")
+    @RequestMapping("resetPwd")
     public Result resetPwd(Users user,String code){
         if(user==null){
             return ResultUtil.error("用户信息为空！");
