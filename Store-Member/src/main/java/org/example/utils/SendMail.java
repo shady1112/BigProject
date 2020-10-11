@@ -93,7 +93,7 @@ public class SendMail {
             ts.close();
             return  ResultUtil.success("邮件发送成功！");
         }catch (Exception e){
-            log.error(e.getMessage());
+            e.printStackTrace();
             return  ResultUtil.error("邮件发送失败，请重试！");
         }
 
