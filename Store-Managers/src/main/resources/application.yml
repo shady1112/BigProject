@@ -1,9 +1,0 @@
-server:
-  port: 8083
-spring:
-  application:
-    name: Managers
-eureka:
-  client:
-    service-url:
-      defaultZone: http://106.12.182.12:7000/eureka

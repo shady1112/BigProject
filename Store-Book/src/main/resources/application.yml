@@ -1,9 +1,0 @@
-server:
-  port: 8082
-spring:
-  application:
-    name: Books
-eureka:
-  client:
-    service-url:
-      defaultZone: http://106.12.182.12:7000/eureka
