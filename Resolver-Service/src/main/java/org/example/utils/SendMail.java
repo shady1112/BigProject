@@ -67,7 +67,7 @@ public class SendMail {
             // MimeBodyPart代表一块一块的资源内容
             MimeBodyPart image = new MimeBodyPart();
             // 图片需要经过数处理，DataHandler，不然会乱码
-            DataHandler dh = new DataHandler(new FileDataSource("Store-Member/src/main/resources/img/159602672991491.png"));
+            DataHandler dh = new DataHandler(new FileDataSource("Store-Member/src/main/resources/img/160221494528838.png"));
             // 在我们的Body中放入这个图片处理数据
             image.setDataHandler(dh);
             // 给图片设置一个ID，我们后面可以使用,就是下面的src里面可以直接用
@@ -75,7 +75,7 @@ public class SendMail {
 
             // 准备正文数据
             MimeBodyPart text = new MimeBodyPart();
-            text.setContent("您的验证码为"+authCode+"<br/><img src='cid:x.jpg'>", "text/html;charset=UTF-8");
+            text.setContent("<font style='font-size:15px'>您的验证码为"+authCode+"<font><br/><img src='cid:x.jpg'>", "text/html;charset=UTF-8");
 
             // 数据描述关系
             // 用MimeMultipart封装前面的一块一块的内容

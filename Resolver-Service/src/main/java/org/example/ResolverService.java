@@ -1,20 +1,19 @@
 package org.example;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * @author Shady
  */
 
-@EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan("org.example.mapper")
-public class Member {
+@NacosPropertySource(dataId = "Resolver-Common.yaml",autoRefreshed = true,groupId = "DEV_GROUP")
+public class ResolverService {
     public static void main(String[] args) {
-        SpringApplication.run(Member.class, args);
+        SpringApplication.run(ResolverService.class, args);
     }
 }

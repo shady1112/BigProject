@@ -1,6 +1,7 @@
 package org.example.controller;
 
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -12,12 +13,13 @@ import org.example.utils.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.ConnectException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,6 +34,7 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     private RedisTemplate redisTemplate;
+
 
     /**
      * 这是用户登录方法
@@ -57,7 +60,7 @@ public class LoginController {
      *
      * @param user 用户信息
      */
-    @PostMapping("userRegistry")
+    @RequestMapping("userRegistry")
     public Result userRegistry(Users user,String code) {
         if(user==null){
             return ResultUtil.error("用户信息为空！");
@@ -78,7 +81,7 @@ public class LoginController {
      * @return
      * @throws Exception
      */
-    @PostMapping("sendMail")
+    @RequestMapping("sendMail")
     public Result sendMail (String userMail ) throws Exception {
          String randomCode = RandomStringUtils.random(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
@@ -96,11 +99,12 @@ public class LoginController {
      * @param code
      * @return
      */
-    @PostMapping("resetPwd")
+    @RequestMapping("/resetPwd")
     public Result resetPwd(Users user,String code){
         if(user==null){
             return ResultUtil.error("用户信息为空！");
         }
+
         if (code==null){
             return ResultUtil.error("验证码为空！");
         }
@@ -114,10 +118,11 @@ public class LoginController {
             loginService.checkEmail(user);
              result =  loginService.resetPwd(user);
         }catch (Exception e){
-            log.error(e.getMessage());
+            log.error("resetPwd,{}",e);
             return ResultUtil.error(e.getMessage());
         }
         return result;
     }
+
 
 }

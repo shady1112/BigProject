@@ -1,7 +1,7 @@
 package org.example.service.impl;
 
-import com.alibaba.nacos.client.logger.support.LogLog;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.example.bean.Users;
 import org.example.common.result.Result;
 import org.example.common.result.ResultEnum;
@@ -12,15 +12,13 @@ import org.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
 @Slf4j
-@Service
+@DubboService
 public class LoginServiceImpl implements LoginService {
 
 
