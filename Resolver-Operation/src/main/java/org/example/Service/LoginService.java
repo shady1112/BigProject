@@ -1,10 +1,17 @@
-package org.example.service;
-
+package org.example.Service;
 
 import org.example.bean.Users;
 import org.example.common.result.Result;
 
-public interface ResolverApi {
+public interface LoginService {
+
+    /**
+     * 查询是否含有该用户
+     * @param user 用户信息
+     * @return 数量信息
+     */
+
+
 
     Result selectUserCount(Users user);
 
@@ -15,5 +22,4 @@ public interface ResolverApi {
     Result checkEmail(Users user);
 
     Result resetPwd(Users user);
-
 }

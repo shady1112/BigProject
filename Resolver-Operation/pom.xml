@@ -24,6 +24,20 @@
   </properties>
 
   <dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>Resolver-Common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <artifactId>Resolver-Api</artifactId>
+      <groupId>org.example</groupId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
     <!--nacos 注册中心-->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
@@ -81,6 +95,10 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
   </dependencies>
 
