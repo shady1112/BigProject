@@ -1,14 +1,19 @@
-package org.example.Service.impl;
+package org.example.service.impl;
 
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.example.Service.LoginService;
 import org.example.bean.Users;
 import org.example.common.result.Result;
 import org.example.service.ResolverApi;
+import org.springframework.stereotype.Service;
 
-public class LoginServiceImpl implements LoginService {
 
-    @DubboReference
+/**
+ * @author Shady
+ */
+@Service
+public class LoginServiceImpl implements ResolverApi {
+
+    @DubboReference(version = "1.0.0",timeout = 1000000)
     ResolverApi resolverApi;
 
 

@@ -5,10 +5,10 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.example.bean.Users;
 import org.example.common.result.Result;
 import org.example.common.result.ResultEnum;
+import org.example.service.ResolverApi;
 import org.example.utils.ResultUtil;
 import org.example.utils.TokenUtil;
 import org.example.mapper.UsersDao;
-import org.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,8 +18,8 @@ import java.util.Map;
 
 
 @Slf4j
-@DubboService
-public class LoginServiceImpl implements LoginService {
+@DubboService(version = "1.0.0",timeout = 1000000)
+public class LoginServiceImpl implements ResolverApi {
 
 
     @Autowired

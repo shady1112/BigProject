@@ -1,20 +1,22 @@
 package org.example.utils;
 
 
-import com.sun.mail.util.MailSSLSocketFactory;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.message.Message;
-import org.example.common.result.Result;
-
+import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.mail.*;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.net.PasswordAuthentication;
-import java.util.Properties;
+
+import com.sun.mail.util.MailSSLSocketFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.example.common.result.Result;
 
 
 @Slf4j

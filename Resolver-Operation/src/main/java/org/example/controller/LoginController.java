@@ -4,9 +4,9 @@ package org.example.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
-import org.example.Service.LoginService;
 import org.example.bean.Users;
 import org.example.common.result.Result;
+import org.example.service.ResolverApi;
 import org.example.utils.ResultUtil;
 import org.example.utils.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * @author Shady
+ */
 @Slf4j
 @CrossOrigin
 @RequestMapping("login")
@@ -25,7 +28,8 @@ public class LoginController {
 
 
     @Autowired
-    private LoginService loginService;
+    private ResolverApi loginService;
+
     @Autowired
     private RedisTemplate redisTemplate;
 

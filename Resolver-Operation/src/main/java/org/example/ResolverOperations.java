@@ -13,3 +13,4 @@ public class ResolverOperations
         SpringApplication.run(ResolverOperations.class, args);
     }
 }
+
