@@ -1,5 +1,7 @@
 package org.example.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.example.bean.Users;
@@ -100,6 +102,7 @@ public class LoginServiceImpl implements ResolverApi {
     @Override
     public Result resetPwd(Users user) {
         try {
+            Map<String, Object> jsonStringToMap = JSONObject.parseObject("String", new TypeReference<Map<String, Object>>() {});
             usersDao.resetPwd(user);
             Map resultMap = new HashMap();
             resultMap.put("msg", "密码已成功修改！");
@@ -109,6 +112,9 @@ public class LoginServiceImpl implements ResolverApi {
             return ResultUtil.error("密码修改失败");
 
         }
+
+
+
     }
 
 
